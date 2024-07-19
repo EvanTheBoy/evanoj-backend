@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * 题目提交接口
  */
 @RestController
-@RequestMapping("/post_thumb")
+@RequestMapping("/question_submit")
 @Slf4j
 public class QuestionSubmitController {
 
@@ -39,7 +39,7 @@ public class QuestionSubmitController {
      * @return resultNum 本次点赞变化数
      */
     @PostMapping("/")
-    public BaseResponse<Integer> doThumb(@RequestBody QuestionSubmitAddRequest questionSubmitAddRequest,
+    public BaseResponse<Integer> doQuestionSubmit(@RequestBody QuestionSubmitAddRequest questionSubmitAddRequest,
             HttpServletRequest request) {
         if (questionSubmitAddRequest == null || questionSubmitAddRequest.getPostId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
