@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -34,7 +36,7 @@ public class Question implements Serializable {
     /**
      * 标签列表(json 数组)
      */
-    private String tags;
+    private List<String> tags;
 
     /**
      * 题目答案
