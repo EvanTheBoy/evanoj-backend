@@ -1,13 +1,14 @@
-package com.yupi.springbootinit.model.dto.postthumb;
+package com.yupi.springbootinit.model.dto.questinsubmit;
+
+import lombok.Data;
 
 import java.io.Serializable;
-import lombok.Data;
 
 /**
  * 帖子点赞请求
  */
 @Data
-public class PostThumbAddRequest implements Serializable {
+public class QuestionSubmitAddRequest implements Serializable {
 
     /**
      * 帖子 id

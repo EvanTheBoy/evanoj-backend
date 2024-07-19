@@ -1,19 +1,15 @@
-package com.yupi.springbootinit.model.dto.post;
+package com.yupi.springbootinit.model.dto.question;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
-import lombok.Data;
 
 /**
- * 编辑请求
+ * 创建请求
  */
 @Data
-public class PostEditRequest implements Serializable {
-
-    /**
-     * id
-     */
-    private Long id;
+public class QuestionAddRequest implements Serializable {
 
     /**
      * 标题
