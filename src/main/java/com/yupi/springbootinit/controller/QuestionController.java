@@ -66,8 +66,6 @@ public class QuestionController {
         questionService.validQuestion(question, true);
         User loginUser = userService.getLoginUser(request);
         question.setUserId(loginUser.getId());
-        question.setFavourNum(0);
-        question.setThumbNum(0);
         boolean result = questionService.save(question);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         long newQuestionId = question.getId();

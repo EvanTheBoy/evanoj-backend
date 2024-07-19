@@ -1,26 +1,22 @@
-package com.yupi.springbootinit.model.entity;
+package com.yupi.springbootinit.model.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.yupi.springbootinit.model.dto.question.JudgeConfig;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.yupi.springbootinit.model.dto.question.JudgeCase;
-import com.yupi.springbootinit.model.dto.question.JudgeConfig;
-import lombok.Data;
-
 /**
- * 题目
- * @TableName question
+ * 题目封装类
  */
 @TableName(value ="question")
 @Data
-public class Question implements Serializable {
+public class QuestionVO implements Serializable {
     /**
      * id
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -39,11 +35,6 @@ public class Question implements Serializable {
     private List<String> tags;
 
     /**
-     * 题目答案
-     */
-    private String answer;
-
-    /**
      * 题目提交数
      */
     private Integer submitNum;
@@ -52,11 +43,6 @@ public class Question implements Serializable {
      * 题目通过数
      */
     private Integer acceptedNum;
-
-    /**
-     * 判题用例(json 数组)
-     */
-    private List<JudgeCase> judgeCase;
 
     /**
      * 判题配置(json 对象)
@@ -78,12 +64,5 @@ public class Question implements Serializable {
      */
     private Date updateTime;
 
-    /**
-     * 是否删除
-     */
-    @TableLogic
-    private Integer isDelete;
-
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
