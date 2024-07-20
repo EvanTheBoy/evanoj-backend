@@ -1,5 +1,7 @@
 package com.yupi.springbootinit.service.impl;
 
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +12,8 @@ import com.yupi.springbootinit.exception.BusinessException;
 import com.yupi.springbootinit.exception.ThrowUtils;
 import com.yupi.springbootinit.mapper.QuestionFavourMapper;
 import com.yupi.springbootinit.mapper.QuestionThumbMapper;
+import com.yupi.springbootinit.model.dto.question.JudgeCase;
+import com.yupi.springbootinit.model.dto.question.JudgeConfig;
 import com.yupi.springbootinit.model.dto.question.QuestionEsDTO;
 import com.yupi.springbootinit.model.dto.question.QuestionQueryRequest;
 import com.yupi.springbootinit.model.entity.*;
@@ -67,12 +71,19 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         if (question == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        Long id = question.getId();
         String title = question.getTitle();
         String content = question.getContent();
         String tags = question.getTags();
+        String answer = question.getAnswer();
+        String judgeCase = question.getJudgeCase();
+        String judgeConfig = question.getJudgeConfig();
+        Long userId = question.getUserId();
+
+        String tagStr = JSONUtil.toJsonStr(tags);
         // 创建时，参数不能为空
         if (add) {
-            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tags), ErrorCode.PARAMS_ERROR);
+            ThrowUtils.throwIf(StringUtils.isAnyBlank(title, content, tagStr), ErrorCode.PARAMS_ERROR);
         }
         // 有参数则校验
         if (StringUtils.isNotBlank(title) && title.length() > 80) {
@@ -80,6 +91,9 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         }
         if (StringUtils.isNotBlank(content) && content.length() > 8192) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "内容过长");
+        }
+        if (StringUtils.isNotBlank(answer) && answer.length() > 8192) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "答案过长");
         }
     }
 
