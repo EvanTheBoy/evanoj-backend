@@ -36,7 +36,7 @@ public class Question implements Serializable {
     /**
      * 标签列表(json 数组)
      */
-    private List<String> tags;
+    private String tags;
 
     /**
      * 题目答案
@@ -56,12 +56,12 @@ public class Question implements Serializable {
     /**
      * 判题用例(json 数组)
      */
-    private List<JudgeCase> judgeCase;
+    private String judgeCase;
 
     /**
      * 判题配置(json 对象)
      */
-    private JudgeConfig judgeConfig;
+    private String judgeConfig;
 
     /**
      * 创建用户 id
