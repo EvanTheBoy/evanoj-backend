@@ -67,6 +67,11 @@ public class QuestionVO implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 创建题目人的信息
+     */
+    private UserVO userVO;
+
     private static final long serialVersionUID = 1L;
 
     /**

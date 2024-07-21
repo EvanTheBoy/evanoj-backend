@@ -32,14 +32,6 @@ public interface QuestionService extends IService<Question> {
     QueryWrapper<Question> getQueryWrapper(QuestionQueryRequest questionQueryRequest);
 
     /**
-     * 从 ES 查询
-     *
-     * @param questionQueryRequest
-     * @return
-     */
-    Page<Question> searchFromEs(QuestionQueryRequest questionQueryRequest);
-
-    /**
      * 获取帖子封装
      *
      * @param question

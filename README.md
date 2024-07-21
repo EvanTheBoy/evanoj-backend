@@ -1,12 +1,5 @@
 # SpringBoot 项目初始模板
 
-> 作者：[程序员鱼皮](https://github.com/liyupi)
-> 仅分享于 [编程导航知识星球](https://yupi.icu)
-
-基于 Java SpringBoot 的项目初始模板，整合了常用框架和主流业务的示例代码。
-
-只需 1 分钟即可完成内容网站的后端！！！大家还可以在此基础上快速开发自己的项目。
-
 [toc]
 
 ## 模板特点
@@ -152,8 +145,6 @@ PUT post_v1
  参数见 sql/post_es_mapping.json 文件
 }
 ```
-
-这步不会操作的话需要补充下 Elasticsearch 的知识，或者自行百度一下~
 
 3）开启同步任务，将数据库的帖子同步到 Elasticsearch
 
