@@ -18,5 +18,5 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
      * @param loginUser
      * @return
      */
-    int doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser);
+    long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser);
 }
