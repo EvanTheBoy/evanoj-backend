@@ -1,8 +1,9 @@
 package com.yupi.springbootinit.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yupi.springbootinit.model.dto.post.PostQueryRequest;
-import com.yupi.springbootinit.model.entity.Post;
+import com.evan.evanoj.service.PostService;
+import com.evan.evanoj.model.dto.post.PostQueryRequest;
+import com.evan.evanoj.model.entity.Post;
 import javax.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

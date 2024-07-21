@@ -1,6 +1,7 @@
 package com.yupi.springbootinit.service;
 
-import com.yupi.springbootinit.model.entity.User;
+import com.evan.evanoj.service.PostThumbService;
+import com.evan.evanoj.model.entity.User;
 import javax.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
