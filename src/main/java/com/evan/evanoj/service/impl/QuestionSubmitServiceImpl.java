@@ -10,7 +10,6 @@ import com.evan.evanoj.model.entity.User;
 import com.evan.evanoj.service.QuestionService;
 import com.evan.evanoj.service.QuestionSubmitService;
 import com.evan.evanoj.mapper.QuestionSubmitMapper;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,7 +27,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     private QuestionService questionService;
 
     @Override
-    public int doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
+    public long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
         long questionId = questionSubmitAddRequest.getQuestionId();
         // 判断实体是否存在，根据类别获取实体
         Question question = questionService.getById(questionId);
@@ -36,8 +35,19 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         // 创建 questionSubmit 实例
+        // 每个用户串行提交题目
         QuestionSubmit questionSubmit = new QuestionSubmit();
-        
-        QuestionSubmitService questionSubmitService = (QuestionSubmitService) AopContext.currentProxy();
+        questionSubmit.setUserid(loginUser.getId());
+        questionSubmit.setQuestionId(questionId);
+        questionSubmit.setCode(questionSubmitAddRequest.getCode());
+        questionSubmit.setLanguage(questionSubmitAddRequest.getLanguage());
+        // 传入相应枚举类
+        questionSubmit.setStatus();
+        questionSubmit.setJudgeInfo("{}");
+        boolean saved = this.save(questionSubmit);
+        if (!saved) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入失败");
+        }
+        return questionSubmit.getId();
     }
 }
