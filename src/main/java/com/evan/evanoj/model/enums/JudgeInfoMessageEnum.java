@@ -7,19 +7,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 题目上传业务类型枚举
+ * 判题信息业务类型枚举
  */
-public enum QuestionSubmitLanguageEnum {
+public enum JudgeInfoMessageEnum {
 
-    JAVA("Java", "Java"),
-    CPP("C++", "C++"),
-    GOLANG("Golang", "Golang");
+    ACCEPTED("成功", "Accepted"),
+    WRONG_ANSWER("答案错误", "Wrong Answer"),
+    COMPILE_ERROR("编译错误", "Compile Error"),
+    TIME_LIMIT_EXCEEDED("超时", "Time Limit Exceeded"),
+    MEMORY_OVERFLOW("内存溢出", "Memory Overflow"),
+    PRESENTATION_ERROR("展示错误", "Presentation Error"),
+    WAITING("等待中", "Waiting"),
+    OUTPUT_OVERFLOW("输出错误", "Output Overflow"),
+    DANGEROUS_OPERATION("危险操作", "Dangerous Operation"),
+    RUNTIME_ERROR("运行错误", "Runtime Error"),
+    SYSTEM_ERROR("系统错误", "System Error");
 
     private final String text;
 
     private final String value;
 
-    QuestionSubmitLanguageEnum(String text, String value) {
+    JudgeInfoMessageEnum(String text, String value) {
         this.text = text;
         this.value = value;
     }
@@ -39,11 +47,11 @@ public enum QuestionSubmitLanguageEnum {
      * @param value
      * @return
      */
-    public static QuestionSubmitLanguageEnum getEnumByValue(String value) {
+    public static JudgeInfoMessageEnum getEnumByValue(String value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (QuestionSubmitLanguageEnum anEnum : QuestionSubmitLanguageEnum.values()) {
+        for (JudgeInfoMessageEnum anEnum : JudgeInfoMessageEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }

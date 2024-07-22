@@ -7,6 +7,8 @@ import com.evan.evanoj.model.dto.questinsubmit.QuestionSubmitAddRequest;
 import com.evan.evanoj.model.entity.Question;
 import com.evan.evanoj.model.entity.QuestionSubmit;
 import com.evan.evanoj.model.entity.User;
+import com.evan.evanoj.model.enums.QuestionSubmitLanguageEnum;
+import com.evan.evanoj.model.enums.QuestionSubmitStatusEnum;
 import com.evan.evanoj.service.QuestionService;
 import com.evan.evanoj.service.QuestionSubmitService;
 import com.evan.evanoj.mapper.QuestionSubmitMapper;
@@ -28,6 +30,12 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Override
     public long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
+        // 查看编程语言是否合法
+        String language = questionSubmitAddRequest.getLanguage();
+        QuestionSubmitLanguageEnum languageEnum = QuestionSubmitLanguageEnum.getEnumByValue(language);
+        if (languageEnum == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "编程语言错误");
+        }
         long questionId = questionSubmitAddRequest.getQuestionId();
         // 判断实体是否存在，根据类别获取实体
         Question question = questionService.getById(questionId);
@@ -40,9 +48,9 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmit.setUserid(loginUser.getId());
         questionSubmit.setQuestionId(questionId);
         questionSubmit.setCode(questionSubmitAddRequest.getCode());
-        questionSubmit.setLanguage(questionSubmitAddRequest.getLanguage());
-        // 传入相应枚举类
-        questionSubmit.setStatus();
+        questionSubmit.setLanguage(language);
+        // 传入相应枚举类, 统一为等待判题
+        questionSubmit.setStatus(QuestionSubmitStatusEnum.WAITING.getValue());
         questionSubmit.setJudgeInfo("{}");
         boolean saved = this.save(questionSubmit);
         if (!saved) {
