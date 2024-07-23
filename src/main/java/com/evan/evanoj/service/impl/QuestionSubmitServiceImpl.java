@@ -1,14 +1,18 @@
 package com.evan.evanoj.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.evan.evanoj.common.ErrorCode;
 import com.evan.evanoj.exception.BusinessException;
 import com.evan.evanoj.model.dto.questinsubmit.QuestionSubmitAddRequest;
+import com.evan.evanoj.model.dto.questinsubmit.QuestionSubmitQueryRequest;
 import com.evan.evanoj.model.entity.Question;
 import com.evan.evanoj.model.entity.QuestionSubmit;
 import com.evan.evanoj.model.entity.User;
 import com.evan.evanoj.model.enums.QuestionSubmitLanguageEnum;
 import com.evan.evanoj.model.enums.QuestionSubmitStatusEnum;
+import com.evan.evanoj.model.vo.QuestionSubmitVO;
 import com.evan.evanoj.service.QuestionService;
 import com.evan.evanoj.service.QuestionSubmitService;
 import com.evan.evanoj.mapper.QuestionSubmitMapper;
@@ -57,5 +61,20 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入失败");
         }
         return questionSubmit.getId();
+    }
+
+    @Override
+    public QueryWrapper<QuestionSubmit> getQueryWrapper(QuestionSubmitQueryRequest questionSubmitQueryRequest) {
+        return null;
+    }
+
+    @Override
+    public QuestionSubmitVO getQuestionSubmitVO(QuestionSubmit questionSubmit, User loginUser) {
+        return null;
+    }
+
+    @Override
+    public Page<QuestionSubmitVO> getQuestionSubmitVOPage(Page<QuestionSubmit> questionSubmitPage, User loginUser) {
+        return null;
     }
 }
