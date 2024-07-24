@@ -15,29 +15,19 @@ import java.util.List;
 public class QuestionSubmitQueryRequest extends PageRequest implements Serializable {
 
     /**
-     * id
+     * 编程语言
      */
-    private Long id;
+    private String language;
 
     /**
-     * 标题
+     * 提交状态
      */
-    private String title;
+    private Integer status;
 
     /**
-     * 内容
+     * 题目 id
      */
-    private String content;
-
-    /**
-     * 标签列表(json 数组)
-     */
-    private List<String> tags;
-
-    /**
-     * 题目答案
-     */
-    private String answer;
+    private Long questionId;
 
     /**
      * 创建用户 id
