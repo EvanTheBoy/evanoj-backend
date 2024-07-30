@@ -67,11 +67,11 @@
 
 ## 快速上手
 
-> 所有需要修改的地方鱼皮都标记了 `todo`，便于大家找到修改的位置~
+> 所有需要修改的地方都标记了 `todo`，便于大家找到修改的位置~
 
 ### MySQL 数据库
 
-1）修改 `application.yml` 的数据库配置为你自己的：
+1）修改 `application.yml` 的数据库配置：
 
 ```yml
 spring:
@@ -90,7 +90,7 @@ spring:
 
 ### Redis 分布式登录
 
-1）修改 `application.yml` 的 Redis 配置为你自己的：
+1）修改 `application.yml` 的 Redis 配置：
 
 ```yml
 spring:
@@ -127,7 +127,7 @@ spring:
 
 ### Elasticsearch 搜索引擎
 
-1）修改 `application.yml` 的 Elasticsearch 配置为你自己的：
+1）修改 `application.yml` 的 Elasticsearch 配置：
 
 ```yml
 spring:
