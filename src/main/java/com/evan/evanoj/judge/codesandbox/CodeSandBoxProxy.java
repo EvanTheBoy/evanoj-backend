@@ -2,9 +2,11 @@ package com.evan.evanoj.judge.codesandbox;
 
 import com.evan.evanoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.evan.evanoj.judge.codesandbox.model.ExecuteCodeResponse;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@AllArgsConstructor
 public class CodeSandBoxProxy implements CodeSandBox {
 
     private CodeSandBox codeSandBox;
