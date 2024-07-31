@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.evan.evanoj.common.ErrorCode;
 import com.evan.evanoj.constant.CommonConstant;
 import com.evan.evanoj.exception.BusinessException;
+import com.evan.evanoj.judge.JudgeService;
 import com.evan.evanoj.model.dto.questinsubmit.QuestionSubmitAddRequest;
 import com.evan.evanoj.model.dto.questinsubmit.QuestionSubmitQueryRequest;
 import com.evan.evanoj.model.entity.Question;
@@ -28,6 +29,7 @@ import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -44,6 +46,9 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private JudgeService judgeService;
 
     @Override
     public long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
@@ -73,9 +78,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if (!saved) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入失败");
         }
-        // TODO 执行判题服务
-
-        return questionSubmit.getId();
+        // 执行判题服务
+        Long questionSubmitId = questionSubmit.getId();
+        CompletableFuture.runAsync(() -> judgeService.doJudge(questionSubmitId));
+        return questionSubmitId;
     }
 
     @Override

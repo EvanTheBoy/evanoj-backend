@@ -1,7 +1,7 @@
 package com.evan.evanoj.judge;
 
-import com.evan.evanoj.model.vo.QuestionSubmitVO;
+import com.evan.evanoj.model.entity.QuestionSubmit;
 
 public interface JudgeService {
-    QuestionSubmitVO doJudge(long questionSubmitId);
+    QuestionSubmit doJudge(long questionSubmitId);
 }
